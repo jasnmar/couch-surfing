@@ -30,4 +30,4 @@ const reviews = [
     },
 ]
 
-displayReviewCount(reviews.length, reviews[1].name)
+displayReviewCount(reviews.length, reviews[0].name)
