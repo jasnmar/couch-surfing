@@ -6,7 +6,7 @@ import "./style.css"
 const reviewTotalDisplay = document.querySelector('#reviews') as HTMLHeadingElement
 
 function displayReviewCount(count: number, reviewer: string, loyalty: boolean) {
-  reviewTotalDisplay.innerHTML = 'review total: ' + count.toString() + ' last reviewed by: ' + reviewer + (loyalty ? "&#8902;":"")
+  reviewTotalDisplay.textContent = 'review total: ' + count.toString() + ' last reviewed by: ' + reviewer + (loyalty ? "⭐":"")
 }
 
 const reviews = [
