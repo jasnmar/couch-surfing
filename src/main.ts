@@ -5,8 +5,8 @@ import "./style.css"
 // all TypeScript weakness flags.
 const reviewTotalDisplay = document.querySelector('#reviews') as HTMLHeadingElement
 
-function displayReviewCount(count: number) {
-  reviewTotalDisplay.textContent = count.toString()
+function displayReviewCount(count: number, reviewer: string) {
+  reviewTotalDisplay.textContent = 'review total: ' + count.toString() + ' last reviewed by: ' + reviewer
 }
 
 const reviews = [
@@ -30,4 +30,4 @@ const reviews = [
     },
 ]
 
-displayReviewCount(reviews.length)
+displayReviewCount(reviews.length, reviews[1].name)
