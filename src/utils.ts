@@ -1,5 +1,6 @@
 import { Loyalty } from "./enums"
 import { Review } from "./interfaces"
+import { Permissions } from "./enums"
 
 const returningUserDisplay = document.querySelector('#returning-user') as HTMLSpanElement
 const userNameDisplay = document.querySelector('#user') as HTMLSpanElement
