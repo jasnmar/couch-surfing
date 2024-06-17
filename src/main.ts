@@ -5,6 +5,8 @@ import { Review, Property, User } from "./interfaces"
 import { MainProperty } from "./classes"
 import columbiaImg from "../images/colombia-property.jpg"
 import londonImg from "../images/london-property.jpg"
+import malaysiaImg from "../images/Malia-Hotel.jpg"
+import polandImg from "../images/poland-property.jpg"
 
 
 
@@ -62,7 +64,7 @@ const properties: Property[] = [
     available: true
   },
   {
-    image: "images/poland-property.jpg",
+    image: polandImg,
     title: "Polish Cottage",
     price: 30,
     location: {
@@ -88,7 +90,7 @@ const properties: Property[] = [
     available: true
   },
   {
-    image: "images/Malia-Hotel.jpg",
+    image: malaysiaImg,
     title: "Malia Hotel",
     price: 35,
     location: {
