@@ -1,4 +1,5 @@
 import { Loyalty } from "./enums"
+import { Review } from "./interfaces"
 
 const returningUserDisplay = document.querySelector('#returning-user') as HTMLSpanElement
 const userNameDisplay = document.querySelector('#user') as HTMLSpanElement
@@ -51,9 +52,8 @@ export function makeMultiple(value: number) : string {
   } else return ''
 }
 
-export function getTopTwoReviews(reviews: 
-  {name: string, stars: number, date: string}[]): 
-  {name: string, stars: number, date: string}[] 
+export function getTopTwoReviews(reviews: Review[]): 
+  Review[] 
   {
     const sortedReviews = reviews.sort((a, b) => b.stars - a.stars);
     return sortedReviews.slice(0, 2);

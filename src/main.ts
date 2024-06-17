@@ -2,6 +2,7 @@ import "./style.css"
 import { showReviewTotal, populateUser, addProperties, getTopTwoReviews } from './utils'
 import { Permissions, Loyalty } from './enums'
 import { Country, Price } from "./types"
+import { Review } from "./interfaces"
 
 
 const footer = document.querySelector('.footer') as HTMLDivElement
@@ -9,13 +10,10 @@ const reviewContainer = document.querySelector('.reviews') as HTMLHeadingElement
 const container = document.querySelector('.container') as HTMLDivElement
 const button = document.querySelector('button') as HTMLButtonElement
 
-const reviews: {
-  name: string;
-  stars: number;
-  loyaltyUser: Loyalty;
-  date: string;
-  description?: string,
-}[] = [
+
+
+const reviews: Review[]
+ = [
     {
         name: 'Sheia',
         stars: 5,
@@ -118,7 +116,7 @@ properties.forEach(property => {
 });
 
 let count = 0
-function addReviews(array: {stars :number, name: string, loyaltyUser: Loyalty, date: string}[]) : void {
+function addReviews(array: Review[]) : void {
     if (!count ) {
         count++
         const topTwo = getTopTwoReviews(array)
@@ -137,3 +135,29 @@ button.addEventListener('click', () => addReviews(reviews))
 
 let currentLocation: [location: string, time: string, temperature: number] = ["Chichester, NH", new Date().toTimeString(), 24]
 footer.innerHTML = currentLocation.toString()
+
+// class Car {
+//   make: string
+//   year: number
+//   color: string
+//   constructor(make: string, year: number, color: string) {
+//     this.make = make
+//     this.year = year
+//     this.color = color
+//   }
+// }
+
+
+// 1. Add a Class that will let us create a main image, it should allow us to 
+// store the reviews, the src and title.
+
+class MainImage {
+  reviews: Review[]
+  src: string
+  title: string
+  constructor(reviews: Review[], src: string, title: string) {
+    this.reviews = reviews
+    this.src = src
+    this.title = title
+  }
+}
