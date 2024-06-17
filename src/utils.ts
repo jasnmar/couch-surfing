@@ -5,7 +5,7 @@ const userNameDisplay = document.querySelector('#user') as HTMLSpanElement
 const reviewTotalDisplay = document.querySelector('#reviews') as HTMLHeadingElement
 const propertyDiv = document.querySelector('.properties') as HTMLDivElement
 
-let isLoggedIn: boolean
+//let isLoggedIn: boolean
 
 export function showReviewTotal(count: number, reviewer: string, loyalty: Loyalty) : void {
   reviewTotalDisplay.textContent = count.toString() + ' review' + makeMultiple(count) + ' | last reviewed by: ' + reviewer + (loyalty === Loyalty.GOLD_USER ? "⭐":"")
@@ -21,7 +21,7 @@ export function populateUser(isReturning : boolean, userName: string ) {
 //let authorityStatus : boolean | Permissions
 
 
-isLoggedIn = true
+//isLoggedIn = true
 export function addProperties(image: string, title: string, price: number, permission: Permissions) {
   const card = document.createElement("div")
   card.classList.add("card")
@@ -49,4 +49,12 @@ export function makeMultiple(value: number) : string {
   if (value > 1 || value == 0) {
       return 's'
   } else return ''
+}
+
+export function getTopTwoReviews(reviews: 
+  {name: string, stars: number, date: string}[]): 
+  {name: string, stars: number, date: string}[] 
+  {
+    const sortedReviews = reviews.sort((a, b) => b.stars - a.stars);
+    return sortedReviews.slice(0, 2);
 }

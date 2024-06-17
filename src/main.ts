@@ -1,8 +1,13 @@
 import "./style.css"
-import { showReviewTotal, populateUser, addProperties } from './utils'
+import { showReviewTotal, populateUser, addProperties, getTopTwoReviews } from './utils'
 import { Permissions, Loyalty } from './enums'
 import { Country, Price } from "./types"
 
+
+const footer = document.querySelector('.footer') as HTMLDivElement
+const reviewContainer = document.querySelector('.reviews') as HTMLHeadingElement
+const container = document.querySelector('.container') as HTMLDivElement
+const button = document.querySelector('button') as HTMLButtonElement
 
 const reviews: {
   name: string;
@@ -112,7 +117,23 @@ properties.forEach(property => {
   addProperties(property.image, property.title, property.price, you.permission)
 });
 
+let count = 0
+function addReviews(array: {stars :number, name: string, loyaltyUser: Loyalty, date: string}[]) : void {
+    if (!count ) {
+        count++
+        const topTwo = getTopTwoReviews(array)
+        for (let i = 0; i < topTwo.length; i++) {
+            const card = document.createElement('div')
+            card.classList.add('review-card')
+            card.innerHTML = topTwo[i].stars + ' stars from ' + topTwo[i].name
+            reviewContainer.appendChild(card)
+        }
+        container.removeChild(button) 
+    }
+}
 
-const footer = document.querySelector('.footer') as HTMLDivElement
+button.addEventListener('click', () => addReviews(reviews))
+
+
 let currentLocation: [location: string, time: string, temperature: number] = ["Chichester, NH", new Date().toTimeString(), 24]
 footer.innerHTML = currentLocation.toString()
