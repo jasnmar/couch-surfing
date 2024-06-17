@@ -1,16 +1,13 @@
 import "./style.css"
 import { showReviewTotal, populateUser, addProperties, getTopTwoReviews } from './utils'
 import { Permissions, Loyalty } from './enums'
-import { Country, Price } from "./types"
-import { Review } from "./interfaces"
-
+import { Review, Property, User } from "./interfaces"
+import { MainProperty } from "./classes"
 
 const footer = document.querySelector('.footer') as HTMLDivElement
 const reviewContainer = document.querySelector('.reviews') as HTMLHeadingElement
 const container = document.querySelector('.container') as HTMLDivElement
 const button = document.querySelector('button') as HTMLButtonElement
-
-
 
 const reviews: Review[]
  = [
@@ -37,17 +34,7 @@ const reviews: Review[]
 
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 
-
-const you: { 
-  userName: { 
-    firstName: string,
-    lastName: string
-  },
-  isReturning: boolean,
-  age: number,
-  stayedAt: (string | number)[]
-  permission: Permissions
- } = {
+const you: User = {
     userName: {firstName: 'Bobby', lastName: 'Brown'},
     isReturning: true,
     age: 23,
@@ -55,20 +42,7 @@ const you: {
     permission: Permissions.ADMIN,
 }
 
-
-const properties: {
-  image: string,
-  title: string,
-  price: Price,
-  location: {
-    address1: string,
-    city: string,
-    postalcode: string,
-    country: Country,
-  }
-  contactDetails: [number, string],
-  available: boolean
-}[] = [
+const properties: Property[] = [
   {
     image: "images/colombia-property.jpg",
     title: "Columbian Shack",
@@ -107,6 +81,19 @@ const properties: {
     },
     contactDetails: [+1123495082908, 'andyluger@aol.com'],
     available: true
+  },
+  {
+    image: "images/Malia-Hotel.jpg",
+    title: "Malia Hotel",
+    price: 35,
+    location: {
+      address1: 'Room 4',
+      city: "Malia",
+      postalcode: "45334",
+      country: "Malaysia"
+    },
+    contactDetails: [+60349822083, 'lee34@gmail.com'],
+    available: false
   }
 ]
 
@@ -151,13 +138,11 @@ footer.innerHTML = currentLocation.toString()
 // 1. Add a Class that will let us create a main image, it should allow us to 
 // store the reviews, the src and title.
 
-class MainImage {
-  reviews: Review[]
-  src: string
-  title: string
-  constructor(reviews: Review[], src: string, title: string) {
-    this.reviews = reviews
-    this.src = src
-    this.title = title
-  }
-}
+
+
+let yourMainProperty = new MainProperty(reviews, properties[0].image, properties[0].title)
+
+const mainImageContainer = document.querySelector('.main-image') as HTMLDivElement
+const image = document.createElement('img')
+image.setAttribute('src', yourMainProperty.src)
+mainImageContainer.appendChild(image)
