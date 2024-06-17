@@ -123,24 +123,8 @@ button.addEventListener('click', () => addReviews(reviews))
 let currentLocation: [location: string, time: string, temperature: number] = ["Chichester, NH", new Date().toTimeString(), 24]
 footer.innerHTML = currentLocation.toString()
 
-// class Car {
-//   make: string
-//   year: number
-//   color: string
-//   constructor(make: string, year: number, color: string) {
-//     this.make = make
-//     this.year = year
-//     this.color = color
-//   }
-// }
 
-
-// 1. Add a Class that will let us create a main image, it should allow us to 
-// store the reviews, the src and title.
-
-
-
-let yourMainProperty = new MainProperty(reviews, properties[0].image, properties[0].title)
+let yourMainProperty = new MainProperty(reviews, properties[3].image, properties[3].title)
 
 const mainImageContainer = document.querySelector('.main-image') as HTMLDivElement
 const image = document.createElement('img')
