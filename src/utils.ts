@@ -7,8 +7,8 @@ const propertyDiv = document.querySelector('.properties') as HTMLDivElement
 
 let isLoggedIn: boolean
 
-export function showReviewTotal(count: number, reviewer: string, loyalty: Loyalty) {
-  reviewTotalDisplay.textContent = 'review total: ' + count.toString() + ' last reviewed by: ' + reviewer + (loyalty === Loyalty.GOLD_USER ? "⭐":"")
+export function showReviewTotal(count: number, reviewer: string, loyalty: Loyalty) : void {
+  reviewTotalDisplay.textContent = count.toString() + ' review' + makeMultiple(count) + ' | last reviewed by: ' + reviewer + (loyalty === Loyalty.GOLD_USER ? "⭐":"")
 }
 
 export function populateUser(isReturning : boolean, userName: string ) {
@@ -18,7 +18,7 @@ export function populateUser(isReturning : boolean, userName: string ) {
     userNameDisplay.innerHTML = userName
 }
 
-let authorityStatus : boolean | Permissions
+//let authorityStatus : boolean | Permissions
 
 
 isLoggedIn = true
@@ -34,10 +34,19 @@ export function addProperties(image: string, title: string, price: number, permi
 }
 
 function showDetails(authorityStatus: boolean | Permissions, element : HTMLDivElement, price: number) {
-  console.log('authorityStatus: ', authorityStatus)
   if (authorityStatus) {
       const priceDisplay = document.createElement('div')
       priceDisplay.innerHTML = price.toString() + '/night'
       element.appendChild(priceDisplay)
   }
+}
+
+// function add( firstValue: number, secondValue: number) :number {
+//   return firstValue + secondValue
+// }
+
+export function makeMultiple(value: number) : string {
+  if (value > 1 || value == 0) {
+      return 's'
+  } else return ''
 }
