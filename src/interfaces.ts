@@ -10,7 +10,7 @@ export interface Review {
 }
 
 export interface Property {
-  image: string,
+  image: any,
   title: string,
   price: Price,
   location: {
