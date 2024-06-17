@@ -1,33 +1,33 @@
 import "./style.css"
 import { showReviewTotal, populateUser, addProperties } from './utils'
-// Object Types Challenge
-// Based on what we discussed we need to make up our Property Objects and array,
-// can you create that array, making sure to assign the correct Types?
+import { Permissions, Loyalty } from './enums'
 
 
 const reviews: {
   name: string;
   stars: number;
-  loyaltyUser: boolean;
+  loyaltyUser: Loyalty;
   date: string;
+  description?: string,
 }[] = [
     {
         name: 'Sheia',
         stars: 5,
-        loyaltyUser: true,
+        loyaltyUser: Loyalty.GOLD_USER,
         date: '01-04-2021'
     },
     {
         name: 'Andrzej',
         stars: 3,
-        loyaltyUser: false,
+        loyaltyUser: Loyalty.BRONZE_USER,
         date: '28-03-2021'
     },
     {
         name: 'Omar',
         stars: 4,
-        loyaltyUser: true,
-        date: '27-03-2021'
+        loyaltyUser: Loyalty.SILVER_USER,
+        date: '27-03-2021',
+        description: 'my stay was awful'
     },
 ]
 
@@ -42,11 +42,13 @@ const you: {
   isReturning: boolean,
   age: number,
   stayedAt: (string | number)[]
+  permission: Permissions
  } = {
     userName: {firstName: 'Bobby', lastName: 'Brown'},
     isReturning: true,
     age: 23,
-    stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow', 23]
+    stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow', 23],
+    permission: Permissions.ADMIN,
 }
 
 const properties: {
@@ -103,10 +105,9 @@ const properties: {
   }
 ]
 
-showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 populateUser(you.isReturning, you.userName.firstName)
 properties.forEach(property => {
-  addProperties(property.image, property.title)
+  addProperties(property.image, property.title, property.price, you.permission)
 });
 
 

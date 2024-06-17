@@ -1,10 +1,14 @@
+import { Loyalty } from "./enums"
+
 const returningUserDisplay = document.querySelector('#returning-user') as HTMLSpanElement
 const userNameDisplay = document.querySelector('#user') as HTMLSpanElement
 const reviewTotalDisplay = document.querySelector('#reviews') as HTMLHeadingElement
 const propertyDiv = document.querySelector('.properties') as HTMLDivElement
 
-export function showReviewTotal(count: number, reviewer: string, loyalty: boolean) {
-  reviewTotalDisplay.textContent = 'review total: ' + count.toString() + ' last reviewed by: ' + reviewer + (loyalty ? "⭐":"")
+let isLoggedIn: boolean
+
+export function showReviewTotal(count: number, reviewer: string, loyalty: Loyalty) {
+  reviewTotalDisplay.textContent = 'review total: ' + count.toString() + ' last reviewed by: ' + reviewer + (loyalty === Loyalty.GOLD_USER ? "⭐":"")
 }
 
 export function populateUser(isReturning : boolean, userName: string ) {
@@ -14,6 +18,26 @@ export function populateUser(isReturning : boolean, userName: string ) {
     userNameDisplay.innerHTML = userName
 }
 
-export function addProperties(image: string, title: string) {
-  propertyDiv.innerHTML += `<div class="card"><img src=${image}><p>${title}</p></div>`
+let authorityStatus : boolean | Permissions
+
+
+isLoggedIn = true
+export function addProperties(image: string, title: string, price: number, permission: Permissions) {
+  const card = document.createElement("div")
+  card.classList.add("card")
+  card.innerHTML=title
+  const cardImage = document.createElement("img")
+  cardImage.setAttribute("src", image)
+  card.appendChild(cardImage)
+  propertyDiv.appendChild(card)
+  showDetails(permission, card, price)
+}
+
+function showDetails(authorityStatus: boolean | Permissions, element : HTMLDivElement, price: number) {
+  console.log('authorityStatus: ', authorityStatus)
+  if (authorityStatus) {
+      const priceDisplay = document.createElement('div')
+      priceDisplay.innerHTML = price.toString() + '/night'
+      element.appendChild(priceDisplay)
+  }
 }
