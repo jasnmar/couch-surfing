@@ -1,6 +1,7 @@
 import "./style.css"
 import { showReviewTotal, populateUser, addProperties } from './utils'
 import { Permissions, Loyalty } from './enums'
+import { Country, Price } from "./types"
 
 
 const reviews: {
@@ -51,15 +52,16 @@ const you: {
     permission: Permissions.ADMIN,
 }
 
+
 const properties: {
   image: string,
   title: string,
-  price: number,
+  price: Price,
   location: {
     address1: string,
     city: string,
     postalcode: string,
-    country: string,
+    country: Country,
   }
   contactDetails: [number, string],
   available: boolean
@@ -80,7 +82,7 @@ const properties: {
   {
     image: "images/poland-property.jpg",
     title: "Polish Cottage",
-    price: 34,
+    price: 30,
     location: {
       address1: 'no 23',
       city: "Gdansk",
@@ -93,7 +95,7 @@ const properties: {
   {
     image: "images/london-property.jpg",
     title: "London Flat",
-    price: 23,
+    price: 25,
     location: {
       address1: 'flat 23',
       city: "London",
