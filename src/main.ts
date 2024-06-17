@@ -3,6 +3,10 @@ import { showReviewTotal, populateUser, addProperties, getTopTwoReviews } from '
 import { Permissions, Loyalty } from './enums'
 import { Review, Property, User } from "./interfaces"
 import { MainProperty } from "./classes"
+import columbiaImg from "../images/colombia-property.jpg"
+import londonImg from "../images/london-property.jpg"
+
+
 
 const footer = document.querySelector('.footer') as HTMLDivElement
 const reviewContainer = document.querySelector('.reviews') as HTMLHeadingElement
@@ -44,7 +48,8 @@ const you: User = {
 
 const properties: Property[] = [
   {
-    image: "images/colombia-property.jpg",
+    //image: "images/columbia-property.jpg",
+    image: columbiaImg,
     title: "Columbian Shack",
     price: 45,
     location: {
@@ -70,7 +75,7 @@ const properties: Property[] = [
     available: true
   },
   {
-    image: "images/london-property.jpg",
+    image: londonImg,
     title: "London Flat",
     price: 25,
     location: {
